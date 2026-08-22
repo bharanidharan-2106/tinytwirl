@@ -10,7 +10,8 @@ import OfferBanner from '../../components/ui/OfferBanner';
 import EventBanner from '../../components/ui/EventBanner';
 import TestimonialCard from '../../components/ui/TestimonialCard';
 import LocationSection from '../../components/ui/LocationSection';
-import ContactButtons, { BookTrialButton } from '../../components/ContactButtons';
+import { BookTrialButton } from '../../components/ContactButtons';
+import SocialBrandLinks from '../../components/SocialBrandLinks';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const Home = () => {
@@ -75,7 +76,7 @@ const Home = () => {
       />
       
       {/* SECTION 1 - HERO */}
-      <section className="relative overflow-hidden bg-cream py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-cream py-14 lg:py-20">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 h-96 w-96 rounded-full bg-purple/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-80 w-80 rounded-full bg-turquoise/10 blur-3xl" />
         
@@ -84,17 +85,40 @@ const Home = () => {
             initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <h1 className="mb-6 font-display text-4xl font-semibold leading-tight tracking-tight text-charcoal sm:text-5xl lg:text-6xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-turquoise sm:text-base">
+              Kids gymnastics centre in Coimbatore
+            </p>
+            <h1 className="mb-4 font-display text-4xl font-semibold leading-tight tracking-tight text-charcoal sm:text-5xl lg:text-6xl">
               Little Twirl, <span className="text-purple">Big Smile!</span>
             </h1>
-            <p className="mb-8 text-xl text-charcoal/80 sm:text-2xl">
-              A joyful space where little ones move, learn, grow and shine.
+            <p className="mb-6 text-lg text-charcoal/80 sm:text-xl">
+              The Tiny Twirl is a structured, welcoming space where children move, learn and grow with confidence — through gymnastics, fitness, yoga, dance and play.
             </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <Link to="/contact" className="btn-primary w-full sm:w-auto">
-                Contact Us
-              </Link>
+            <ul className="mb-8 flex flex-col gap-2 text-left text-sm font-semibold text-charcoal/80 sm:text-base">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-turquoise" aria-hidden="true" />
+                Progressive classes for ages 1–14
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-turquoise" aria-hidden="true" />
+                Child-centred coaching with safety first
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-turquoise" aria-hidden="true" />
+                Confidence, coordination and joyful participation
+              </li>
+            </ul>
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
               <BookTrialButton className="w-full sm:w-auto" />
+              <Link to="/programs" className="btn-secondary w-full sm:w-auto">
+                Explore Programs
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-turquoise px-6 py-3 font-bold text-turquoise transition-all hover:bg-turquoise hover:text-white focus:outline-none focus:ring-2 focus:ring-turquoise focus:ring-offset-2 sm:w-auto"
+              >
+                Contact
+              </Link>
             </div>
           </motion.div>
           
@@ -105,12 +129,13 @@ const Home = () => {
             <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-card border-8 border-white bg-white flex flex-col relative z-20">
               <div className="w-full h-full flex flex-col">
                 <div className="flex-1 overflow-hidden relative">
-                  <img src="/hero.png" alt="Gymnastics Fun" className="w-full h-full object-cover" />
+                  <img src="/hero.png" alt="Child practising gymnastics at The Tiny Twirl in Coimbatore" className="w-full h-full object-cover" />
                 </div>
                 <div className="bg-white py-3 text-center z-10 relative">
                   <p className="font-display text-lg font-semibold tracking-tight text-purple sm:text-xl">
-                    Gymnastics Fun starts here
+                    Kids gymnastics in Coimbatore
                   </p>
+                  <SocialBrandLinks size="sm" className="mt-2 justify-center" />
                 </div>
               </div>
               {/* Decorative elements */}

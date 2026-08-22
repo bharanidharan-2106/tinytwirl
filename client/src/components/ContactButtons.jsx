@@ -47,7 +47,7 @@ const ContactButtons = ({ layout = 'grid', className = '', compact = false }) =>
       key: 'email',
       label: compact ? 'Email' : 'Email Us',
       href: getEmailLink(),
-      className: `${contactButtonBase} bg-purple text-white hover:bg-purple-dark focus:ring-purple`,
+      className: `${contactButtonBase} bg-[#EA4335] text-white hover:brightness-110 focus:ring-[#EA4335]`,
       icon: Mail,
     },
     hasContactMethod('googleMaps') && {
@@ -55,7 +55,7 @@ const ContactButtons = ({ layout = 'grid', className = '', compact = false }) =>
       label: compact ? 'Directions' : 'Get Directions',
       href: contact.googleMaps,
       external: true,
-      className: `${contactButtonBase} border-2 border-purple bg-white text-purple hover:bg-purple hover:text-white focus:ring-purple`,
+      className: `${contactButtonBase} bg-[#EA4335] text-white hover:brightness-110 focus:ring-[#EA4335]`,
       icon: MapPin,
     },
     hasContactMethod('instagram') && {
@@ -63,7 +63,7 @@ const ContactButtons = ({ layout = 'grid', className = '', compact = false }) =>
       label: 'Instagram',
       href: contact.instagram,
       external: true,
-      className: `${contactButtonBase} bg-gradient-to-r from-purple to-pink-500 text-white hover:opacity-90 focus:ring-purple`,
+      className: `${contactButtonBase} bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white hover:opacity-90 focus:ring-[#DD2A7B]`,
       icon: Instagram,
     },
     hasContactMethod('facebook') && {

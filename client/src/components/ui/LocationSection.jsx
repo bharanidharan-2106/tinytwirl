@@ -11,7 +11,7 @@ const LocationSection = ({ className = '' }) => {
         <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple/5 rounded-full blur-3xl -mt-10 -mr-10" />
           
-          <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-purple/10 text-purple shadow-sm">
+          <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EA4335] text-white shadow-sm">
             <MapPin className="h-7 w-7" />
           </div>
           
@@ -25,7 +25,7 @@ const LocationSection = ({ className = '' }) => {
 
           <div className="mb-10 space-y-4 text-charcoal/80 bg-cream/50 p-6 rounded-2xl border border-purple/5">
             <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-turquoise mt-1 shrink-0" />
+              <MapPin className="w-5 h-5 text-[#EA4335] mt-1 shrink-0" />
               <p className="leading-relaxed">
                 Hari Complex, 207/4, Sathy Rd,<br />
                 opposite to Prozone Mall,<br />
@@ -37,7 +37,7 @@ const LocationSection = ({ className = '' }) => {
               <p className="font-medium">+91 99523 57017</p>
             </div>
             <div className="flex items-center gap-3 pt-2">
-              <Mail className="w-5 h-5 text-turquoise shrink-0" />
+              <Mail className="w-5 h-5 text-[#EA4335] shrink-0" />
               <p className="font-medium">tinytwirlkids@gmail.com</p>
             </div>
             <div className="flex items-start gap-3 pt-3 mt-3 border-t border-purple/10">
@@ -72,7 +72,7 @@ const LocationSection = ({ className = '' }) => {
           
           <div className="relative z-10 w-full max-w-sm rounded-[2rem] bg-white/10 backdrop-blur-md border border-white/20 p-8 text-center text-white shadow-xl hover:bg-white/20 transition-all duration-500">
             <div className="mx-auto w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-lg">
-              <MapPin className="h-8 w-8 text-turquoise animate-bounce" />
+              <MapPin className="h-8 w-8 text-[#EA4335] animate-bounce" />
             </div>
             <h4 className="font-display text-2xl font-bold mb-3">Find us in Coimbatore</h4>
             <p className="text-white/80 mb-8 leading-relaxed">
