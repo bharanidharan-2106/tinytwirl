@@ -114,7 +114,7 @@ export const BookTrialButton = ({ className = '', compact = false }) => {
       href={getWhatsAppLink('Hello! I would like to book a trial class at The Tiny Twirl.')}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${contactButtonBase} bg-gradient-to-r from-turquoise to-purple text-white shadow-soft hover:shadow-card hover:scale-[1.02] focus:ring-purple ${
+      className={`${contactButtonBase} bg-turquoise text-white shadow-soft hover:bg-turquoise-dark hover:shadow-card hover:scale-[1.02] focus:ring-turquoise ${
         compact ? 'px-4 py-2 text-sm' : 'btn-primary'
       } ${className}`}
     >

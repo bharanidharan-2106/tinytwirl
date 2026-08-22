@@ -15,7 +15,6 @@ const About = () => {
       
       <PageHero 
         title="Where Little Ones Learn to Twirl & Grow"
-        description="A positive, encouraging environment designed specifically for children."
       />
 
       {/* Core Philosophy Section */}

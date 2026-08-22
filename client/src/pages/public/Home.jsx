@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Sparkles, Heart, Users, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import SEO from '../../components/SEO';
 import { publicApi } from '../../services/api';
 import ProgramCard from '../../components/ui/ProgramCard';
@@ -84,10 +84,7 @@ const Home = () => {
             initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <p className="mb-4 inline-block rounded-full bg-purple/10 px-4 py-1.5 text-sm font-bold tracking-wider text-purple">
-              KIDS GYMNASTICS • COIMBATORE
-            </p>
-            <h1 className="mb-6 font-display text-5xl font-extrabold text-charcoal sm:text-6xl lg:text-7xl">
+            <h1 className="mb-6 font-display text-4xl font-semibold leading-tight tracking-tight text-charcoal sm:text-5xl lg:text-6xl">
               Little Twirl, <span className="text-purple">Big Smile!</span>
             </h1>
             <p className="mb-8 text-xl text-charcoal/80 sm:text-2xl">
@@ -111,7 +108,9 @@ const Home = () => {
                   <img src="/hero.png" alt="Gymnastics Fun" className="w-full h-full object-cover" />
                 </div>
                 <div className="bg-white py-3 text-center z-10 relative">
-                  <p className="font-display text-xl text-purple font-bold">Gymnastics Fun starts here</p>
+                  <p className="font-display text-lg font-semibold tracking-tight text-purple sm:text-xl">
+                    Gymnastics Fun starts here
+                  </p>
                 </div>
               </div>
               {/* Decorative elements */}
@@ -119,31 +118,6 @@ const Home = () => {
               <div className="absolute -top-6 -right-6 bg-turquoise w-32 h-32 rounded-full mix-blend-multiply opacity-50 blur-xl" />
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 2 - TRUST STRIP */}
-      <section className="bg-purple text-white py-12">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 text-center">
-            {[
-              { icon: Sparkles, text: "Fun-Focused Movement" },
-              { icon: Star, text: "Confidence & Coordination" },
-              { icon: Heart, text: "Inclusive Gymnastics" },
-              { icon: Users, text: "For Growing Little Stars" }
-            ].map((item, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
-                className="flex flex-col items-center gap-3"
-              >
-                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                  <item.icon className="w-6 h-6 text-yellow" />
-                </div>
-                <h3 className="font-bold text-sm md:text-base">{item.text}</h3>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

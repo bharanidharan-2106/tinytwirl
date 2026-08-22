@@ -22,8 +22,8 @@ export default {
         cream: '#FFFBF5',
       },
       fontFamily: {
-        sans: ['Nunito', 'system-ui', 'sans-serif'],
-        display: ['Fredoka', 'Nunito', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'DM Sans', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         xl: '16px',

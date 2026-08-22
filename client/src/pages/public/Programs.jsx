@@ -74,9 +74,6 @@ const Programs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="mb-4 inline-block rounded-full bg-purple/5 px-4 py-1.5 text-sm font-bold tracking-wider text-purple uppercase">
-              THE TINY TWIRL • COIMBATORE
-            </p>
             <h1 className="mb-6 font-display text-4xl font-extrabold text-charcoal sm:text-5xl">
               Gymnastics Programs for <span className="text-purple">Growing Little Stars</span>
             </h1>

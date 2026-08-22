@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import ScrollToTop from './components/ScrollToTop';
 
 // Layouts
 import PublicLayout from './layouts/PublicLayout';
@@ -27,6 +28,7 @@ import TestimonialsAdmin from './pages/admin/Testimonials';
 const App = () => {
   return (
     <SplashScreen>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicLayout />}>
