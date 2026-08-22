@@ -1,4 +1,4 @@
-# The Tiny Twirl 🤸‍♀️
+# The Tiny Twirl 
 
 > Little Twirl, Big Smile! A joyful space where little ones move, learn, grow and shine.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 ### Public Website
 - **Modern & Premium UI:** Designed with a vibrant, playful, yet professional aesthetic using Tailwind CSS and Framer Motion for smooth animations.
@@ -27,7 +27,7 @@
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 **Frontend (Client)**
 - React (Vite)
@@ -46,7 +46,7 @@
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 The Tiny Twirl/
@@ -136,12 +136,12 @@ This will create a default admin user (`admin@thetinytwirl.com` / `admin123`).
 
 ---
 
-## 🔒 Security Notes
+## Security Notes
 - The admin dashboard is strictly protected by a 24-hour JWT token. 
 - If the token expires, the client immediately intercepts the 401 error, wipes the local session, and redirects to the login screen.
 - Media files are processed through Multer and securely pushed directly to Cloudinary.
 
-## 🤖 Maintenance
+## Maintenance
 - **Cron Jobs:** Expired events and offers are automatically purged from both the database and Cloudinary daily at midnight to maintain system hygiene.
 
 ---

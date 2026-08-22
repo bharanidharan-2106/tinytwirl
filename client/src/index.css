@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-turquoise to-purple px-6 py-3 font-bold text-white shadow-soft transition-all hover:shadow-card hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-purple bg-white px-6 py-3 font-bold text-purple transition-all hover:bg-purple hover:text-white focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 py-3 font-bold text-white shadow-soft transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2;
+  }
+
+  .section-padding {
+    @apply px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
+  }
+
+  .container-custom {
+    @apply mx-auto max-w-7xl;
+  }
+
+  .card {
+    @apply rounded-3xl bg-white p-6 shadow-card transition-all hover:shadow-soft;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-turquoise to-purple bg-clip-text text-transparent;
+  }
+}
