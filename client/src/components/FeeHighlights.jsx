@@ -24,7 +24,7 @@ const FeeHighlights = ({ settings }) => {
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {regEnabled && (
-            <div className="rounded-3xl border border-turquoise/20 bg-turquoise/5 p-6 flex-1">
+            <div className="min-w-0 w-full rounded-3xl border border-turquoise/20 bg-turquoise/5 p-6">
               <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-turquoise text-white">
                 <ClipboardList className="h-5 w-5" aria-hidden="true" />
               </div>
@@ -34,7 +34,7 @@ const FeeHighlights = ({ settings }) => {
             </div>
           )}
           {autismEnabled && (
-            <div className="rounded-3xl border border-purple/15 bg-purple/5 p-6 flex-1">
+            <div className="min-w-0 w-full rounded-3xl border border-purple/15 bg-purple/5 p-6">
               <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-purple text-white">
                 <HeartHandshake className="h-5 w-5" aria-hidden="true" />
               </div>

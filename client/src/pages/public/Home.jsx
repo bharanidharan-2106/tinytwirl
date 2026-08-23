@@ -110,7 +110,7 @@ const Home = () => {
             initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-turquoise sm:text-base">
+            <p className="mb-3 px-1 text-sm font-semibold uppercase tracking-wide text-turquoise sm:text-base">
               Kids gymnastics centre in Coimbatore
             </p>
             <h1 className="mb-4 font-display text-4xl font-semibold leading-tight tracking-tight text-charcoal sm:text-5xl lg:text-6xl">
@@ -119,7 +119,7 @@ const Home = () => {
             <p className="mb-6 text-lg text-charcoal/80 sm:text-xl">
               A welcoming space where children move, learn and grow with confidence — through gymnastics, fitness, yoga, dance and play.
             </p>
-            <ul className="mb-8 flex flex-col gap-2 text-left text-sm font-semibold text-charcoal/80 sm:text-base">
+            <ul className="mb-8 mx-auto flex max-w-xl flex-col gap-2 text-left text-sm font-semibold text-charcoal/80 sm:text-base lg:mx-0">
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-turquoise" aria-hidden="true" />
                 Progressive classes for ages 1–14

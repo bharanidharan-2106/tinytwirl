@@ -6,6 +6,7 @@ import ProgramCard from '../../components/ui/ProgramCard';
 import { publicApi } from '../../services/api';
 import EmptyState from '../../components/EmptyState';
 import { BookTrialButton } from '../../components/ContactButtons';
+import MobileBackButton from '../../components/MobileBackButton';
 
 const ProgramsSkeleton = () => (
   <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
@@ -63,7 +64,8 @@ const Programs = () => {
       />
 
       {/* Compact Custom Hero */}
-      <section className="relative overflow-hidden bg-cream py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-cream py-16 pt-20 lg:py-20">
+        <MobileBackButton />
         {/* Subtle decorative shapes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 h-64 w-64 rounded-full bg-purple/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-64 w-64 rounded-full bg-turquoise/5 blur-3xl" />

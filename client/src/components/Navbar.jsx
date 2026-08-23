@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-40 border-b border-purple/10 bg-white/95 backdrop-blur shadow-sm">
-      <div className="container-custom flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="container-custom flex items-center justify-between py-4">
         <Link to="/" className="flex items-center shrink-0">
           <img src="/logo.png" alt={siteConfig.name} className="h-12 w-auto object-contain" />
         </Link>
