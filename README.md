@@ -126,13 +126,6 @@ npm install
 npm run dev
 ```
 
-### 4. Admin Access (Seeding)
-To generate the first admin user, you can run the seed script:
-```bash
-cd server
-npm run seed
-```
-This will create a default admin user (`admin@thetinytwirl.com` / `admin123`).
 
 ---
 

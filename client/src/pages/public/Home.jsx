@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import SEO from '../../components/SEO';
@@ -13,6 +13,8 @@ import LocationSection from '../../components/ui/LocationSection';
 import { BookTrialButton } from '../../components/ContactButtons';
 import SocialBrandLinks from '../../components/SocialBrandLinks';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import FeeHighlights from '../../components/FeeHighlights';
+import NotificationPopup from '../../components/ui/NotificationPopup';
 
 const Home = () => {
   const [data, setData] = useState({
@@ -21,18 +23,34 @@ const Home = () => {
     offer: null,
     event: null,
     testimonials: [],
+    settings: null,
     loading: true,
   });
+
+  const heroImages = [
+    '/hero.png',
+    '/hero-2.png',
+    '/hero-3.png'
+  ];
+  const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const [programsRes, mediaRes, offersRes, testimonialsRes, eventsRes] = await Promise.all([
+        const [programsRes, mediaRes, offersRes, testimonialsRes, eventsRes, settingsRes] = await Promise.all([
           publicApi.getPrograms().catch(() => ({ data: [] })),
-          publicApi.getMedia({ limit: 4 }).catch(() => ({ data: [] })),
+          publicApi.getMedia().catch(() => ({ data: [] })),
           publicApi.getOffers().catch(() => ({ data: [] })),
           publicApi.getTestimonials().catch(() => ({ data: [] })),
           publicApi.getEvents().catch(() => ({ data: [] })),
+          publicApi.getSettings().catch(() => ({ data: null })),
         ]);
 
         // Find active offer
@@ -43,12 +61,19 @@ const Home = () => {
           .filter(e => e.isPublished && new Date(e.eventDate) >= new Date(new Date().setHours(0,0,0,0)))
           .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))[0];
 
+        // Prioritize featured media, fill with recent if needed
+        const allMedia = mediaRes.data || [];
+        const featuredMedia = allMedia.filter(m => m.isFeatured);
+        const remainingMedia = allMedia.filter(m => !m.isFeatured);
+        const displayMedia = [...featuredMedia, ...remainingMedia].slice(0, 4);
+
         setData({
-          programs: programsRes.data.slice(0, 2) || [],
-          media: mediaRes.data.slice(0, 4) || [],
+          programs: programsRes.data || [],
+          media: displayMedia,
           offer: activeOffer || null,
           event: upcomingEvent || null,
           testimonials: testimonialsRes.data.slice(0, 3) || [],
+          settings: settingsRes.data || null,
           loading: false,
         });
       } catch (error) {
@@ -92,7 +117,7 @@ const Home = () => {
               Little Twirl, <span className="text-purple">Big Smile!</span>
             </h1>
             <p className="mb-6 text-lg text-charcoal/80 sm:text-xl">
-              The Tiny Twirl is a structured, welcoming space where children move, learn and grow with confidence — through gymnastics, fitness, yoga, dance and play.
+              A welcoming space where children move, learn and grow with confidence — through gymnastics, fitness, yoga, dance and play.
             </p>
             <ul className="mb-8 flex flex-col gap-2 text-left text-sm font-semibold text-charcoal/80 sm:text-base">
               <li className="flex items-start gap-2">
@@ -128,8 +153,20 @@ const Home = () => {
           >
             <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-card border-8 border-white bg-white flex flex-col relative z-20">
               <div className="w-full h-full flex flex-col">
-                <div className="flex-1 overflow-hidden relative">
-                  <img src="/hero.png" alt="Child practising gymnastics at The Tiny Twirl in Coimbatore" className="w-full h-full object-cover" />
+                <div className="flex-1 overflow-hidden relative group">
+                  <Link to="/gallery" className="absolute inset-0 z-30" aria-label="View Gallery"></Link>
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={currentHeroIdx}
+                      src={heroImages[currentHeroIdx]}
+                      alt="Child practising gymnastics at The Tiny Twirl in Coimbatore" 
+                      className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </AnimatePresence>
                 </div>
                 <div className="bg-white py-3 text-center z-10 relative">
                   <p className="font-display text-lg font-semibold tracking-tight text-purple sm:text-xl">
@@ -145,6 +182,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      <FeeHighlights settings={data.settings} />
 
       {/* SECTION 3 - WHY US */}
       <section className="section-padding container-custom">
@@ -180,14 +219,14 @@ const Home = () => {
 
       {/* SECTION 6 - CURRENT OFFER (Moved before programs per user request) */}
       {data.offer && (
-        <section className="section-padding container-custom pb-0">
+        <section id="offers-events-section" className="section-padding container-custom pb-0">
           <OfferBanner offer={data.offer} isCompact={true} />
         </section>
       )}
 
       {/* SECTION 6.5 - UPCOMING EVENT (Moved before programs per user request) */}
       {data.event && (
-        <section className="section-padding container-custom pb-0 pt-8">
+        <section id={!data.offer ? "offers-events-section" : undefined} className="section-padding container-custom pb-0 pt-8">
           <EventBanner event={data.event} />
         </section>
       )}
@@ -275,7 +314,7 @@ const Home = () => {
         <LocationSection />
       </section>
 
-
+      <NotificationPopup offer={data.offer} event={data.event} />
 
     </div>
   );

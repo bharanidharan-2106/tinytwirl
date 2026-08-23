@@ -85,27 +85,29 @@ const seed = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
 
-    const adminEmail = process.env.ADMIN_EMAIL;
-    const adminPassword = process.env.ADMIN_PASSWORD;
+    const adminEmail = (process.env.ADMIN_EMAIL || 'admin@tinytwirl.com').toLowerCase();
+    const adminPassword = process.env.ADMIN_PASSWORD || 'tinytwirl@8899';
     const adminName = process.env.ADMIN_NAME || 'Admin';
 
-    if (adminEmail && adminPassword) {
-      const existingAdmin = await User.findOne({ email: adminEmail.toLowerCase() });
-      if (!existingAdmin) {
-        const hashedPassword = await bcrypt.hash(adminPassword, 12);
-        await User.create({
-          name: adminName,
-          email: adminEmail.toLowerCase(),
-          password: hashedPassword,
-          role: 'ADMIN',
-        });
-        console.log(`Admin user created: ${adminEmail}`);
-      } else {
-        console.log('Admin user already exists.');
-      }
-    } else {
-      console.log('Skipping admin creation. Set ADMIN_EMAIL and ADMIN_PASSWORD in .env');
+    const removed = await User.deleteMany({
+      email: { $in: ['admin01@gmail.com', 'admin@thetinytwirl.com'] },
+    });
+    if (removed.deletedCount > 0) {
+      console.log(`Removed ${removed.deletedCount} old admin account(s).`);
     }
+
+    const hashedPassword = await bcrypt.hash(adminPassword, 12);
+    await User.findOneAndUpdate(
+      { email: adminEmail },
+      {
+        name: adminName,
+        email: adminEmail,
+        password: hashedPassword,
+        role: 'ADMIN',
+      },
+      { upsert: true, new: true }
+    );
+    console.log(`Admin user ready: ${adminEmail}`);
 
     for (const program of programs) {
       await Program.findOneAndUpdate({ slug: program.slug }, program, { upsert: true, new: true });

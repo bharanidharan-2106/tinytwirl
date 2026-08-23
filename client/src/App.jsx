@@ -24,6 +24,7 @@ import ProgramsAdmin from './pages/admin/Programs';
 import OffersAdmin from './pages/admin/Offers';
 import EventsAdmin from './pages/admin/Events';
 import TestimonialsAdmin from './pages/admin/Testimonials';
+import SettingsAdmin from './pages/admin/Settings';
 
 const App = () => {
   return (
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="offers" element={<OffersAdmin />} />
           <Route path="events" element={<EventsAdmin />} />
           <Route path="testimonials" element={<TestimonialsAdmin />} />
+          <Route path="settings" element={<SettingsAdmin />} />
         </Route>
 
         {/* Fallback */}

@@ -1,5 +1,5 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { siteConfig } from '../../config/site';
+import { siteConfig, getPhoneLink, getEmailLink } from '../../config/site';
 import { Link } from 'react-router-dom';
 
 const LocationSection = ({ className = '' }) => {
@@ -26,19 +26,36 @@ const LocationSection = ({ className = '' }) => {
           <div className="mb-10 space-y-4 text-charcoal/80 bg-cream/50 p-6 rounded-2xl border border-purple/5">
             <div className="flex items-start gap-3">
               <MapPin className="w-5 h-5 text-[#EA4335] mt-1 shrink-0" />
-              <p className="leading-relaxed">
-                Hari Complex, 207/4, Sathy Rd,<br />
-                opposite to Prozone Mall,<br />
-                Saravanampatti, Coimbatore, TN 641035
-              </p>
+              {siteConfig.contact.googleMaps ? (
+                <a
+                  href={siteConfig.contact.googleMaps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="leading-relaxed hover:text-purple hover:underline"
+                >
+                  Hari Complex, 207/4, Sathy Rd,<br />
+                  opposite to Prozone Mall,<br />
+                  Saravanampatti, Coimbatore, TN 641035
+                </a>
+              ) : (
+                <p className="leading-relaxed">
+                  Hari Complex, 207/4, Sathy Rd,<br />
+                  opposite to Prozone Mall,<br />
+                  Saravanampatti, Coimbatore, TN 641035
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-3 pt-2">
               <Phone className="w-5 h-5 text-turquoise shrink-0" />
-              <p className="font-medium">+91 99523 57017</p>
+              <a href={getPhoneLink()} className="font-medium hover:text-purple hover:underline">
+                {siteConfig.contact.phone}
+              </a>
             </div>
             <div className="flex items-center gap-3 pt-2">
               <Mail className="w-5 h-5 text-[#EA4335] shrink-0" />
-              <p className="font-medium">tinytwirlkids@gmail.com</p>
+              <a href={getEmailLink()} className="font-medium hover:text-purple hover:underline">
+                {siteConfig.contact.email}
+              </a>
             </div>
             <div className="flex items-start gap-3 pt-3 mt-3 border-t border-purple/10">
               <Clock className="w-5 h-5 text-turquoise shrink-0 mt-0.5" />

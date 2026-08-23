@@ -22,7 +22,8 @@ const ProgramsAdmin = () => {
     description: '',
     objectives: '',
     order: 0,
-    isPublished: true
+    isPublished: true,
+    fees: { threeMonths: '', sixMonths: '', twelveMonths: '', sibling: '' }
   };
   const [formData, setFormData] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
@@ -57,7 +58,13 @@ const ProgramsAdmin = () => {
         description: program.description,
         objectives: program.objectives?.join('\n') || '',
         order: program.order,
-        isPublished: program.isPublished
+        isPublished: program.isPublished,
+        fees: {
+          threeMonths: program.fees?.threeMonths || '',
+          sixMonths: program.fees?.sixMonths || '',
+          twelveMonths: program.fees?.twelveMonths || '',
+          sibling: program.fees?.sibling || '',
+        }
       });
     } else {
       setEditingId(null);
@@ -79,7 +86,13 @@ const ProgramsAdmin = () => {
 
     const payload = {
       ...formData,
-      objectives: objectivesArray
+      objectives: objectivesArray,
+      fees: {
+        threeMonths: formData.fees.threeMonths ? Number(formData.fees.threeMonths) : null,
+        sixMonths: formData.fees.sixMonths ? Number(formData.fees.sixMonths) : null,
+        twelveMonths: formData.fees.twelveMonths ? Number(formData.fees.twelveMonths) : null,
+        sibling: formData.fees.sibling ? Number(formData.fees.sibling) : null,
+      }
     };
 
     try {
@@ -261,6 +274,45 @@ const ProgramsAdmin = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple focus:border-purple outline-none"
                     value={formData.objectives} onChange={e => setFormData({...formData, objectives: e.target.value})}
                   />
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                  <div className="col-span-full">
+                    <label className="block text-sm font-medium text-gray-700">Program Fees (Optional)</label>
+                    <p className="text-xs text-gray-500 mb-2">Leave blank if the specific package does not apply.</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">3 Months (₹)</label>
+                    <input 
+                      type="number" placeholder="e.g. 9500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple focus:border-purple outline-none"
+                      value={formData.fees.threeMonths} onChange={e => setFormData({...formData, fees: {...formData.fees, threeMonths: e.target.value}})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">6 Months (₹)</label>
+                    <input 
+                      type="number" placeholder="e.g. 19000"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple focus:border-purple outline-none"
+                      value={formData.fees.sixMonths} onChange={e => setFormData({...formData, fees: {...formData.fees, sixMonths: e.target.value}})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">12 Months (₹)</label>
+                    <input 
+                      type="number" placeholder="e.g. 29500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple focus:border-purple outline-none"
+                      value={formData.fees.twelveMonths} onChange={e => setFormData({...formData, fees: {...formData.fees, twelveMonths: e.target.value}})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Sibling (₹)</label>
+                    <input 
+                      type="number" placeholder="e.g. 14500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-purple focus:border-purple outline-none"
+                      value={formData.fees.sibling} onChange={e => setFormData({...formData, fees: {...formData.fees, sibling: e.target.value}})}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-2">

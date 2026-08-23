@@ -56,20 +56,20 @@ const Programs = () => {
 
   return (
     <div className="flex flex-col">
-      <SEO 
-        title="Gymnastics Programs for Kids | The Tiny Twirl" 
+      <SEO
+        title="Gymnastics Programs for Kids | The Tiny Twirl"
         description="Explore kids gymnastics programs at The Tiny Twirl in Saravanampatti, Coimbatore, designed around different ages, stages and abilities."
         path="/programs"
       />
-      
+
       {/* Compact Custom Hero */}
       <section className="relative overflow-hidden bg-cream py-16 lg:py-20">
         {/* Subtle decorative shapes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 h-64 w-64 rounded-full bg-purple/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-64 w-64 rounded-full bg-turquoise/5 blur-3xl" />
-        
+
         <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -85,25 +85,15 @@ const Programs = () => {
       </section>
 
       {/* Intro Section */}
-      {!loading && !error && programs.length > 0 && (
-        <section className="pt-16 pb-8 container-custom">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-charcoal mb-4">Find the Right Program for Your Child</h2>
-            <p className="text-charcoal/70">
-              Each program is designed around a different stage of a child's gymnastics journey. Explore the age group, focus and objectives to find the right fit.
-            </p>
-          </div>
-        </section>
-      )}
-      
+
       <section className="pb-20 container-custom min-h-[40vh]">
         {loading ? (
           <ProgramsSkeleton />
         ) : error ? (
           <div className="text-center bg-red-50/50 border border-red-100 p-8 rounded-3xl max-w-2xl mx-auto">
             <p className="text-red-600 mb-6 font-medium">{error}</p>
-            <button 
-              onClick={() => window.location.reload()} 
+            <button
+              onClick={() => window.location.reload()}
               className="btn-primary !bg-red-500 hover:!bg-red-600 !border-none"
             >
               Try Again
@@ -116,7 +106,7 @@ const Programs = () => {
             ))}
           </div>
         ) : (
-          <EmptyState 
+          <EmptyState
             title="Programs are currently being updated."
             message="Please contact The Tiny Twirl to learn about available programs."
             action={

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Menu, X, LayoutDashboard, Image, List, Tag, Calendar, MessageSquare, LogOut } from 'lucide-react';
+import { Menu, X, LayoutDashboard, Image, List, Tag, Calendar, MessageSquare, LogOut, Settings } from 'lucide-react';
 
 const AdminLayout = () => {
   const { logout, user } = useAuth();
@@ -14,6 +14,7 @@ const AdminLayout = () => {
     { name: 'Offers', path: '/admin/offers', icon: Tag },
     { name: 'Events', path: '/admin/events', icon: Calendar },
     { name: 'Testimonials', path: '/admin/testimonials', icon: MessageSquare },
+    { name: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);

@@ -31,8 +31,12 @@ const EventBanner = ({ event }) => {
             <div className="flex items-center gap-1.5">
               <Calendar className="h-4 w-4 text-purple" />
               <span>
-                {new Date(event.eventDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                {event.endDate && ` - ${new Date(event.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`}
+                {(() => {
+                  const start = new Date(event.eventDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  if (!event.endDate) return start;
+                  const end = new Date(event.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                  return start === end ? start : `${start} - ${end}`;
+                })()}
               </span>
             </div>
             {event.location && (

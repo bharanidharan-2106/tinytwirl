@@ -9,6 +9,12 @@ const programSchema = new mongoose.Schema(
     shortObjective: { type: String, required: true },
     description: { type: String, required: true },
     objectives: [{ type: String }],
+    fees: {
+      threeMonths: { type: Number, default: null },
+      sixMonths: { type: Number, default: null },
+      twelveMonths: { type: Number, default: null },
+      sibling: { type: Number, default: null },
+    },
     order: { type: Number, default: 0 },
     isPublished: { type: Boolean, default: true },
   },

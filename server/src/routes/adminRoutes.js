@@ -34,6 +34,7 @@ import {
   updateTestimonial,
   deleteTestimonial,
 } from '../controllers/testimonialController.js';
+import { getSettings, updateSettings } from '../controllers/settingsController.js';
 
 const router = Router();
 
@@ -41,6 +42,9 @@ router.use(protect, adminOnly);
 
 router.get('/me', catchAsync(getMe));
 router.get('/dashboard/stats', catchAsync(getDashboardStats));
+
+router.get('/settings', catchAsync(getSettings));
+router.put('/settings', catchAsync(updateSettings));
 
 router.get('/media', catchAsync(getAdminMedia));
 router.post('/media', upload.single('file'), catchAsync(createMedia));

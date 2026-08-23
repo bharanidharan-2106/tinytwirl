@@ -3,7 +3,7 @@ import { adminApi } from '../../services/api';
 import SEO from '../../components/SEO';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ConfirmDialog from '../../components/ConfirmDialog';
-import { Trash2, Image as ImageIcon, Video, X } from 'lucide-react';
+import { Trash2, Image as ImageIcon, Video, X, Star } from 'lucide-react';
 
 const Media = () => {
   const [media, setMedia] = useState([]);
@@ -86,6 +86,23 @@ const Media = () => {
     }
   };
 
+  const handleToggleFeature = async (item) => {
+    try {
+      if (!item.isFeatured) {
+        const featuredCount = media.filter(m => m.isFeatured).length;
+        if (featuredCount >= 4) {
+          alert('You can only feature up to 4 media items on the home page.');
+          return;
+        }
+      }
+      await adminApi.updateMedia(item._id, { isFeatured: !item.isFeatured });
+      fetchMedia();
+    } catch (err) {
+      console.error('Toggle feature failed', err);
+      alert('Failed to update featured status.');
+    }
+  };
+
   if (loading) return <LoadingSpinner />;
 
   return (
@@ -129,16 +146,30 @@ const Media = () => {
                 
                 {/* Overlay actions */}
                 <div className="absolute inset-0 bg-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button 
-                    onClick={() => setDeleteId(item._id)}
-                    className="p-3 bg-red-500 text-white rounded-full hover:bg-red-600 transform hover:scale-110 transition-all shadow-lg"
-                    title="Delete Media"
-                  >
-                    <Trash2 size={20} />
-                  </button>
+                  <div className="flex gap-2">
+                    <button 
+                      onClick={() => handleToggleFeature(item)}
+                      className={`p-3 rounded-full transform hover:scale-110 transition-all shadow-lg ${item.isFeatured ? 'bg-yellow-400 text-white' : 'bg-white text-gray-400 hover:text-yellow-400'}`}
+                      title={item.isFeatured ? 'Remove from Home Page' : 'Feature on Home Page'}
+                    >
+                      <Star size={20} className={item.isFeatured ? 'fill-current' : ''} />
+                    </button>
+                    <button 
+                      onClick={() => setDeleteId(item._id)}
+                      className="p-3 bg-red-500 text-white rounded-full hover:bg-red-600 transform hover:scale-110 transition-all shadow-lg"
+                      title="Delete Media"
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="p-3 flex-1 flex flex-col justify-center">
+              <div className="p-3 flex-1 flex flex-col justify-center relative">
+                {item.isFeatured && (
+                  <div className="absolute top-0 right-3 -translate-y-1/2 bg-yellow-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                    Featured
+                  </div>
+                )}
                 <p className="font-bold text-charcoal text-sm truncate">{item.title}</p>
                 <p className="text-xs text-gray-500 capitalize">{item.category.toLowerCase()}</p>
               </div>

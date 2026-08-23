@@ -35,6 +35,7 @@ export const publicApi = {
   getOffers: () => api.get('/offers'),
   getEvents: () => api.get('/events'),
   getTestimonials: () => api.get('/testimonials'),
+  getSettings: () => api.get('/settings'),
 };
 
 export const authApi = {
@@ -44,6 +45,8 @@ export const authApi = {
 
 export const adminApi = {
   getStats: () => api.get('/admin/dashboard/stats'),
+  getSettings: () => api.get('/admin/settings'),
+  updateSettings: (data) => api.put('/admin/settings', data),
   getMedia: () => api.get('/admin/media'),
   uploadMedia: (formData) =>
     api.post('/admin/media', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),

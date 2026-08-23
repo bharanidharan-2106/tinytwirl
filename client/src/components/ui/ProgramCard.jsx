@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { formatRupee } from '../../utils/fees';
 
 const ProgramCard = ({ program }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -30,13 +31,6 @@ const ProgramCard = ({ program }) => {
         )}
       </div>
       
-      {/* 3. Short Objective */}
-      {program.shortObjective && (
-        <p className="text-lg font-medium text-charcoal mb-8 border-l-2 border-turquoise pl-4">
-          {program.shortObjective}
-        </p>
-      )}
-
       {/* Expanded Details */}
       <AnimatePresence>
         {isExpanded && (
@@ -46,6 +40,46 @@ const ProgramCard = ({ program }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
+            {/* Fees */}
+            {program.fees && (program.fees.threeMonths || program.fees.sixMonths || program.fees.twelveMonths || program.fees.sibling) && (
+              <div className="mb-8">
+                <p className="text-xs font-bold tracking-widest text-charcoal/50 uppercase mb-3">Fees & Packages</p>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {program.fees.threeMonths && (
+                    <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 text-center">
+                      <p className="text-xs font-bold text-charcoal/60 uppercase mb-1">3 Months</p>
+                      <p className="font-bold text-purple">{formatRupee(program.fees.threeMonths)}</p>
+                    </div>
+                  )}
+                  {program.fees.sixMonths && (
+                    <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 text-center">
+                      <p className="text-xs font-bold text-charcoal/60 uppercase mb-1">6 Months</p>
+                      <p className="font-bold text-purple">{formatRupee(program.fees.sixMonths)}</p>
+                    </div>
+                  )}
+                  {program.fees.twelveMonths && (
+                    <div className="rounded-xl border border-turquoise/20 bg-turquoise/5 p-3 text-center">
+                      <p className="text-xs font-bold text-charcoal/60 uppercase mb-1">12 Months</p>
+                      <p className="font-bold text-turquoise">{formatRupee(program.fees.twelveMonths)}</p>
+                    </div>
+                  )}
+                  {program.fees.sibling && (
+                    <div className="rounded-xl border border-purple/10 bg-purple/5 p-3 text-center">
+                      <p className="text-xs font-bold text-charcoal/60 uppercase mb-1">Sibling</p>
+                      <p className="font-bold text-purple">{formatRupee(program.fees.sibling)}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* 3. Short Objective */}
+            {program.shortObjective && (
+              <p className="text-lg font-medium text-charcoal mb-6 border-l-2 border-turquoise pl-4">
+                {program.shortObjective}
+              </p>
+            )}
+
             {/* 4. Full Description */}
             {program.description && (
               <div className="mb-8">
