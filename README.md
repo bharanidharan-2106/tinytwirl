@@ -1,48 +1,259 @@
-# The Tiny Twirl 
+# The Tiny Twirl
 
-> Little Twirl, Big Smile! A joyful space where little ones move, learn, grow and shine.
+> **Little Twirl, Big Smile!**
+> A joyful space where little ones move, learn, grow, and shine.
 
-**The Tiny Twirl** is a premier Kids Gymnastics Centre located in Coimbatore, Tamil Nadu. This project is a full-stack web application built to serve both as a beautiful public-facing website for parents and a powerful administrative portal for the gym's staff to manage their content.
+**The Tiny Twirl** is a production-ready full-stack web application developed for **The Tiny Twirl Kids Gymnastics Centre**, a gymnastics centre based in Coimbatore, Tamil Nadu, India.
+
+The platform was designed and developed as a **real-world client project**, combining a modern public-facing website with a secure administrative portal that allows the client to manage website content without developer intervention.
+
+ **Live Website:** [thetinytwirl.com](https://thetinytwirl.com/?utm_source=chatgpt.com)
+
+> **Project Showcase Permission:** This project was developed for a real client, and I have received permission from the client to showcase the project for professional, interview, portfolio, and resume purposes.
 
 ---
 
-## Features
+##  Project Overview
+
+The Tiny Twirl needed a digital platform that could effectively represent its brand online while making day-to-day website management simple for its staff.
+
+I designed and developed a complete full-stack solution consisting of:
+
+* A responsive public website for parents and visitors
+* A secure admin dashboard for content management
+* RESTful APIs for frontend-backend communication
+* MongoDB-based content storage
+* Cloudinary-powered media management
+* JWT-based administrator authentication
+* Automated cleanup of expired events and offers
+* Production deployment with Render, MongoDB Atlas, Cloudinary, and a custom domain
+
+The project focuses on **performance, maintainability, responsive design, security, and ease of content management**.
+
+---
+
+## Key Features
 
 ### Public Website
-- **Modern & Premium UI:** Designed with a vibrant, playful, yet professional aesthetic using Tailwind CSS and Framer Motion for smooth animations.
-- **Programs & Classes:** Browse age-appropriate gymnastics programs.
-- **Gallery & Media:** A dynamic gallery showcasing photos and videos of the kids in action.
-- **Events & Offers:** Stay updated with upcoming workshops, holiday camps, and special promotional offers.
-- **Testimonials:** Read verified reviews and feedback from happy parents.
-- **Responsive Design:** Fully optimized for mobile, tablet, and desktop viewing, complete with a smart mobile-only back button for easy navigation.
 
-### Admin Portal
-- **Secure Authentication:** JWT-based login system for administrators with auto-expiration and strict security protocols.
-- **Dashboard:** Get a quick overview of active programs, total media count, active offers, and upcoming events.
-- **Content Management System (CMS):**
-  - **Media:** Upload and delete photos/videos directly. Hosted seamlessly via Cloudinary.
-  - **Programs:** Add, edit, or remove gymnastics programs (Age range, stage, description).
-  - **Offers & Events:** Schedule promotional banners and events. *Includes an automated background cron job that permanently deletes expired offers and events every midnight to save storage!*
-  - **Testimonials:** Curate parent feedback, mark them as published, or feature them on the homepage.
+The public-facing website provides parents and visitors with an engaging way to explore the centre's programs, activities, and updates.
+
+#### Programs & Classes
+
+* Browse available gymnastics programs
+* Display age ranges and program stages
+* Present program descriptions in a parent-friendly format
+* Responsive program layouts across devices
+
+#### Gallery & Media
+
+* Dynamic photo and video gallery
+* Cloud-hosted media through Cloudinary
+* Admin-controlled media uploads and deletion
+* Optimized media presentation for different screen sizes
+
+#### Events & Offers
+
+* Display upcoming workshops and events
+* Promote holiday camps and special activities
+* Highlight active promotional offers
+* Automatically remove expired content through scheduled backend jobs
+
+#### Testimonials
+
+* Display parent feedback and reviews
+* Admin-controlled publishing
+* Support for featured testimonials on the homepage
+
+#### Responsive Experience
+
+* Mobile-first responsive layouts
+* Tablet and desktop optimization
+* Smooth animations and transitions
+* Mobile-specific navigation improvements
+
+---
+
+## Admin Portal
+
+A dedicated administration portal allows authorized staff to manage website content without requiring direct database access or developer assistance.
+
+### Dashboard
+
+Provides a quick overview of the website's current content, including:
+
+* Active programs
+* Total media items
+* Active offers
+* Upcoming events
+
+### Media Management
+
+Administrators can:
+
+* Upload photos and videos
+* View uploaded media
+* Delete existing media
+* Manage Cloudinary-hosted assets
+
+### Program Management
+
+Administrators can:
+
+* Create new programs
+* Edit existing programs
+* Remove programs
+* Configure age ranges and stages
+* Update program descriptions
+
+### Events & Offers Management
+
+Administrators can:
+
+* Create events and promotional offers
+* Configure schedules and expiration dates
+* Update existing content
+* Remove content when required
+
+The system also includes an automated cleanup process that removes expired events and offers from the database and associated Cloudinary resources.
+
+### Testimonial Management
+
+Administrators can:
+
+* Add parent testimonials
+* Edit testimonials
+* Publish or unpublish testimonials
+* Feature selected testimonials on the homepage
+
+---
+
+## Application Architecture
+
+The application follows a **client-server architecture** with a React frontend communicating with a Node.js/Express REST API.
+
+```text
+                    ┌─────────────────────────┐
+                    │      Public Users       │
+                    │   Parents / Visitors    │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │    React + Vite Client  │
+                    │   Tailwind CSS + Motion  │
+                    └────────────┬────────────┘
+                                 │
+                              REST API
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │   Node.js + Express     │
+                    │      REST Backend       │
+                    └──────┬─────────┬────────┘
+                           │         │
+                 ┌─────────┘         └──────────┐
+                 ▼                             ▼
+        ┌─────────────────┐           ┌─────────────────┐
+        │  MongoDB Atlas  │           │    Cloudinary   │
+        │ Application Data│           │ Photos & Videos │
+        └─────────────────┘           └─────────────────┘
+
+                         ┌─────────────────┐
+                         │   Admin Portal  │
+                         │ JWT Protected   │
+                         └─────────────────┘
+```
 
 ---
 
 ## Tech Stack
 
-**Frontend (Client)**
-- React (Vite)
-- Tailwind CSS
-- React Router DOM
-- Framer Motion (Animations)
-- Lucide React (Icons)
-- Axios
+### Frontend
 
-**Backend (Server)**
-- Node.js & Express
-- MongoDB (Mongoose)
-- JSON Web Tokens (JWT) & bcryptjs
-- Cloudinary (Image & Video hosting)
-- Node-Cron (Background cleanup tasks)
+| Technology           | Purpose                                |
+| -------------------- | -------------------------------------- |
+| **React**            | Component-based UI development         |
+| **Vite**             | Frontend development and build tooling |
+| **Tailwind CSS**     | Responsive styling and UI development  |
+| **React Router DOM** | Client-side routing                    |
+| **Framer Motion**    | Animations and interactive transitions |
+| **Lucide React**     | UI icons                               |
+| **Axios**            | HTTP requests and API communication    |
+
+### Backend
+
+| Technology     | Purpose                           |
+| -------------- | --------------------------------- |
+| **Node.js**    | Server-side JavaScript runtime    |
+| **Express.js** | REST API development              |
+| **MongoDB**    | Application database              |
+| **Mongoose**   | MongoDB ODM and schema management |
+| **JWT**        | Administrator authentication      |
+| **bcryptjs**   | Password hashing                  |
+| **Multer**     | Multipart file upload handling    |
+| **Cloudinary** | Image and video storage           |
+| **Node-Cron**  | Scheduled background cleanup jobs |
+
+### Deployment & Infrastructure
+
+| Service              | Usage                             |
+| -------------------- | --------------------------------- |
+| **Render**           | Production application deployment |
+| **MongoDB Atlas**    | Cloud database hosting            |
+| **Cloudinary**       | Media storage and delivery        |
+| **Hostinger**        | Custom domain registration        |
+| **thetinytwirl.com** | Production domain                 |
+
+---
+
+## Security
+
+Security was considered throughout the application, particularly around the administrative system.
+
+### Authentication
+
+* JWT-based administrator authentication
+* Passwords protected using `bcryptjs`
+* Configurable token expiration
+* Protected admin routes
+* Unauthorized API requests return appropriate authentication errors
+
+### Session Handling
+
+The frontend automatically handles expired authentication sessions.
+
+When an API request returns a `401 Unauthorized` response:
+
+1. The client detects the expired/invalid token.
+2. The local authentication state is cleared.
+3. The administrator is redirected to the login page.
+
+### Environment Variables
+
+Sensitive configuration such as:
+
+* Database credentials
+* JWT secrets
+* Cloudinary credentials
+* API configuration
+
+is managed through environment variables rather than committed to the repository.
+
+---
+
+## Automated Maintenance
+
+The backend includes scheduled background jobs using **Node-Cron**.
+
+Expired events and offers are automatically processed and removed from:
+
+* MongoDB
+* Cloudinary
+
+This prevents obsolete content and unused media assets from accumulating over time and reduces unnecessary storage usage.
+
+The cleanup process runs automatically on a scheduled basis without requiring manual administrator intervention.
 
 ---
 
@@ -50,92 +261,156 @@
 
 ```text
 The Tiny Twirl/
-├── client/                 # React Frontend
-│   ├── public/             # Static assets (logo.png, etc.)
+│
+├── client/                         # React frontend
+│   ├── public/                     # Static assets
 │   ├── src/
-│   │   ├── components/     # Reusable UI components (Navbar, Footer, etc.)
-│   │   ├── config/         # Site-wide configuration and copy
-│   │   ├── context/        # React context (AuthContext)
-│   │   ├── pages/          # Page views
-│   │   │   ├── admin/      # Admin dashboard and CMS views
-│   │   │   └── public/     # Public-facing views (Home, About, etc.)
-│   │   └── services/       # API integration
+│   │   ├── components/             # Reusable UI components
+│   │   ├── config/                 # Application/site configuration
+│   │   ├── context/                # React contexts
+│   │   ├── pages/
+│   │   │   ├── admin/              # Admin dashboard & CMS pages
+│   │   │   └── public/             # Public-facing pages
+│   │   └── services/               # API service layer
 │   └── index.html
 │
-└── server/                 # Node.js Backend
-    ├── scripts/            # Database seeding scripts
-    ├── src/
-    │   ├── controllers/    # Route logic (media, offers, programs)
-    │   ├── jobs/           # Automated background tasks (cleanupJobs.js)
-    │   ├── middleware/     # Auth and Error handling
-    │   ├── models/         # Mongoose schemas
-    │   ├── routes/         # Express routes
-    │   ├── services/       # Cloudinary integration
-    │   └── server.js       # Entry point
-    └── package.json
+├── server/                         # Node.js backend
+│   ├── scripts/                    # Database/utility scripts
+│   ├── src/
+│   │   ├── controllers/            # Business logic & request handlers
+│   │   ├── jobs/                   # Scheduled background jobs
+│   │   ├── middleware/             # Authentication & error handling
+│   │   ├── models/                 # Mongoose schemas
+│   │   ├── routes/                 # Express API routes
+│   │   ├── services/               # External service integrations
+│   │   └── server.js               # Application entry point
+│   └── package.json
+│
+└── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
 
-Follow these steps to run the project locally.
+## Production Deployment
 
-### 1. Prerequisites
-- Node.js (v18+)
-- MongoDB (Local or Atlas URL)
-- Cloudinary Account (for image/video uploads)
+The application is deployed as a production website using the following infrastructure:
 
-### 2. Environment Variables
+```text
+Frontend / Backend
+       │
+       ▼
+    Render
+       │
+       ├──────────────► MongoDB Atlas
+       │
+       └──────────────► Cloudinary
 
-You need to create two `.env` files.
-
-**In the `server/` directory create a `.env` file:**
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_super_secret_jwt_key
-JWT_EXPIRES_IN=1d
-
-# Cloudinary Config
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+Custom Domain
+       │
+       ▼
+thetinytwirl.com
+       │
+       ▼
+   Production App
 ```
 
-**In the `client/` directory create a `.env` file:**
-```env
-VITE_API_URL=http://localhost:5000/api
-```
+### Production Services
 
-### 3. Installation
-
-Install dependencies for both the frontend and backend. You can run this from the root directory if you use concurrently, or open two terminals:
-
-**Terminal 1 (Backend):**
-```bash
-cd server
-npm install
-npm run dev
-```
-
-**Terminal 2 (Frontend):**
-```bash
-cd client
-npm install
-npm run dev
-```
-
+* **Application Hosting:** Render
+* **Database:** MongoDB Atlas
+* **Media Storage:** Cloudinary
+* **Domain:** Hostinger
+* **Production URL:** [https://thetinytwirl.com/](https://thetinytwirl.com/?utm_source=chatgpt.com)
 
 ---
 
-## Security Notes
-- The admin dashboard is strictly protected by a 24-hour JWT token. 
-- If the token expires, the client immediately intercepts the 401 error, wipes the local session, and redirects to the login screen.
-- Media files are processed through Multer and securely pushed directly to Cloudinary.
+## Engineering Highlights
 
-## Maintenance
-- **Cron Jobs:** Expired events and offers are automatically purged from both the database and Cloudinary daily at midnight to maintain system hygiene.
+This project provided hands-on experience in building and maintaining a real-world application from development through production deployment.
+
+### Full-Stack Development
+
+Built both the frontend and backend, including:
+
+* React component architecture
+* REST API design
+* Database schema design
+* Authentication and authorization
+* File upload handling
+* Third-party service integration
+
+### CMS Development
+
+Designed an administrator-facing CMS so the client can independently manage:
+
+* Programs
+* Media
+* Events
+* Offers
+* Testimonials
+
+### Cloud Integration
+
+Integrated Cloudinary for scalable image and video management while keeping media assets separate from the application server.
+
+### Production Deployment
+
+Configured and deployed the application using:
+
+* Render
+* MongoDB Atlas
+* Cloudinary
+* Hostinger domain
+
+### Background Processing
+
+Implemented scheduled cleanup jobs to automatically remove expired content and associated media resources.
+
+### Responsive UI
+
+Built a responsive interface optimized for:
+
+* Mobile
+* Tablet
+* Desktop
 
 ---
-*Designed & Built for The Tiny Twirl Kids Gymnastics Centre.*
+
+## Project Status
+
+**Status:** Production / Live
+
+This project is actively deployed and was developed for a real business client.
+
+### Live Website
+
+[Visit The Tiny Twirl](https://thetinytwirl.com/?utm_source=chatgpt.com)
+
+---
+
+## Developer
+
+**Bharanidharan M**
+
+Full-Stack Developer
+
+Designed and developed the application for **The Tiny Twirl Kids Gymnastics Centre**.
+
+This project represents my experience in taking a real client requirement from **concept → design → development → deployment → production maintenance**.
+
+---
+
+## Disclaimer
+
+The Tiny Twirl is a real client project.
+
+I have received permission from the client to showcase this project as part of my professional portfolio, resume, and job interviews.
+
+The project contains client-specific branding and content. Please respect the ownership of the client’s brand, media, and business information.
+
+---
+
+
+> **Little Twirl, Big Smile!**
+> Helping little ones move, learn, grow, and shine.
